@@ -1,4 +1,5 @@
 dealCards();
+
 function dealCards(){
     let numberCards = parseInt(prompt("Com quantas cartas você quer jogar?"));
     while(!(typeof(numberCards)== "number" && numberCards >= 4 && numberCards <= 14 && numberCards % 2 === 0)){
@@ -6,17 +7,33 @@ function dealCards(){
     }
 
     lineCards = document.querySelector(".card-line1");
-    for(let i = 0; i< numberCards; ++i){
-        lineCards.innerHTML += createCard();
+    let numberPairs = numberCards/2;
+    let vectorImgsBack = getBackCards(numberPairs);
+    for(let i = 0; i< numberPairs; ++i){
+        lineCards.innerHTML += createCard(vectorImgsBack[i]);
     }
 }
-function createCard(){
+function getBackCards(numberPairs){
+    let vectorImgsBack = [];
+    let vectorIndexBack = [];
+    for(let i = 0; i<numberPairs; ++i){
+        vectorIndexBack.push(i);
+    }
+    vectorIndexBack.sort(randomizeNumberArray);
+    for(let i = 0; i<numberPairs; ++i){
+        let strImg = `./img/back${vectorIndexBack[i]}.gif`;
+        vectorImgsBack.push(strImg);
+    }
+    return vectorImgsBack;
+}
+
+function createCard(strImg){
     let cardLine = `<div class="card" onClick="selectCard(this)">
                             <div class="card-game">
                                 <img src="img/front.png" class="img-front-card">
                             </div>
                             <div class="card-game back">
-                                <h1>:)</h1>
+                                <img src=${strImg} class="img-front-card">
                             </div>
                         </div>`;
     return cardLine;
@@ -31,8 +48,6 @@ function selectCard(obj){
         objChildren[1].classList.remove("back");
     }
     setTimeout(()=>{unselectCard(objChildren)}, 2000);
-    console.log(objChildren[0]);
-    console.log(objChildren[1]);
 }
 
 function unselectCard(objChildren){
@@ -43,4 +58,7 @@ function unselectCard(objChildren){
         objChildren[1].classList.remove("back-onClick");
     }
     objChildren[1].classList.add("back");
+}
+function randomizeNumberArray(){
+    return Math.random() -0.5;
 }
