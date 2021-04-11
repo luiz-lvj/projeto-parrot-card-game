@@ -64,3 +64,26 @@ h1{
     width: 100px;
     height: 100px;
 }
+@media(max-width:614px){
+    .content{
+        display: flex;
+        flex-direction: column;
+    }
+    .card-line1{
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+    .card-line2{
+        flex-direction: column;
+    }
+    .card{
+        margin-right: 0;
+        margin-bottom: 34px;
+    }
+    h1{
+        font-size: 40px;
+        display: block;
+        text-align: center;
+        width: 340px;
+    }
+}
