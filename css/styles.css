@@ -64,6 +64,27 @@ h1{
     width: 100px;
     height: 100px;
 }
+.timer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+.play-game{
+    background: #75B79E;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 35px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 60px;
+    height: 60px;
+    width: 150px;
+}
+.remove-button{
+    display: none;
+}
 @media(max-width:614px){
     .content{
         display: flex;
