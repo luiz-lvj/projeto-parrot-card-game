@@ -1,6 +1,4 @@
 
-
-/*let relationsPairsIndexes = getPairs(vectorRandomizedOrder);*/
 let numberPairs = 0;
 let numberCards = 0;
 let timerGame = 0;
@@ -127,7 +125,6 @@ function getOrderedIndexes(numberOfPairs){
 }
 
 function startTimer(){
-    let timeCounter = 0;
     let hours = 0;
     let minutes = 0;
     let seconds_shown = 0;
@@ -172,25 +169,3 @@ function finishGame(){
         dealCards();
     }
 }
-/*function getPairs(vectorIndexes){
-    let vectorPairs = [];
-    let vectorTestPairs = [];
-    let numberOfCards = vectorIndexes.lenght;
-    for(let i = 0; i < numberOfCards; i++){
-        vectorTestPairs.push(false);
-    }
-    for(let i = 0; i< numberOfCards; i++){
-        if(vectorTestPairs[i]){
-            continue;
-        }
-        for(let j = i+1; j < numberOfCards; j++){
-            if(vectorIndexes[i] === vectorIndexes[j]){
-                vectorPairs.push([i, j]);
-                vectorTestPairs[i] = true;
-                vectorTestPairs[j] = true;
-                break;
-            }
-        }
-    }
-
-}*/
