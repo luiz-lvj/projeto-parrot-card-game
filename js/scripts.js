@@ -7,9 +7,7 @@ let timerGame = 0;
 
 let numberRounds = 0;
 let isThereSelected = false;
-let isThereTwoSelected = false;
 
-let firstSelectedIndex = -1;
 let numberPairsSelected = 0;
 let objSelected = null;
 
@@ -38,12 +36,7 @@ function playRound(obj, indexCard, indexPair){
     selectCard(obj);
     let cardsPair = document.querySelectorAll(`.pair${indexPair}`);
     let broCard = cardsPair[0].classList.contains(`this-index${indexCard}`) ? cardsPair[1] : cardsPair[0];
-    console.log(broCard);
-    console.log(broCard.children[0]);
-    console.log(broCard.children[1]);
     if(isThereSelected){
-        isThereTwoSelected = true;
-        
         isThereSelected = false;
         if(isSelectedCard(broCard)){
             numberPairsSelected += 1;
@@ -61,7 +54,6 @@ function playRound(obj, indexCard, indexPair){
         isThereSelected = true;
         objSelected = obj;
     }
-    
 }
 
 function selectCard(obj){
@@ -153,7 +145,32 @@ function finishGame(){
     let strTime = document.querySelector(".timer-text").innerHTML;
     clearInterval(timerGame);
     alert(`Parabéns!\nVocê ganhou em ${numberRounds} rodadas!\nSeu tempo de jogo: ${strTime}`);
-    window.location.reload();
+    let askRestart = confirm("Gostaria de Reiniciar o jogo?");
+    if(!askRestart){
+        window.location.reload();
+    }
+    else{
+        numberRounds = 0;
+        isThereSelected = false;
+        numberPairsSelected = 0;
+        objSelected = null;
+
+        let cardLine1 = document.querySelector(".card-line1");
+        let cardLine2 = document.querySelector(".card-line2");
+        for(let item of cardLine1.children){
+            unSelectCard(item.children);
+        }
+        for(let item of cardLine2.children){
+            unSelectCard(item.children);
+        }
+        while(cardLine1.firstChild){
+            cardLine1.removeChild(cardLine1.firstChild);
+        }
+        while(cardLine2.firstChild){
+            cardLine2.removeChild(cardLine2.firstChild);
+        }
+        dealCards();
+    }
 }
 /*function getPairs(vectorIndexes){
     let vectorPairs = [];
